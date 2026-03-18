@@ -34,11 +34,11 @@ description: >
 
 对每条有价值的内容，判断它属于哪种类型：
 
-| 类型 | 判断标准 | 写到哪里 |
-|------|---------|---------|
-| **memory** | 用户偏好、业务定义、项目背景、一次性配置 | `~/.claude/projects/.../memory/` |
-| **skill** | 可复用的多步骤操作流程，将来会反复用 | `E:/ClaudeTask/claude-skills/<name>/SKILL.md` |
-| **wiki** | 今日学习总结、实验记录、经验文章 | `E:/ClaudeTask/wiki_<YYYY-MM-DD>_<topic>.md` |
+| 类型 | 判断标准 | 写到哪里 | 推送到 |
+|------|---------|---------|--------|
+| **memory** | 用户偏好、业务定义、项目背景、一次性配置 | `~/.claude/projects/.../memory/` | 不推送（本地私有） |
+| **skill** | 可复用的多步骤操作流程，将来会反复用 | `E:/ClaudeTask/claude-skills/<name>/SKILL.md` | `tokyboop/claude-skills` |
+| **wiki** | 今日学习总结、踩坑记录、笔记、代码片段 | `E:/ClaudeTask/toky_wiki/<子目录>/` | `tokyboop/toky_wiki` |
 
 **判断原则**：
 - 只会用一次的背景信息 → memory
@@ -84,21 +84,40 @@ type: <user|feedback|project|reference>
 按标准 SKILL.md 格式写到 `E:/ClaudeTask/claude-skills/<name>/SKILL.md`，同时更新 `E:/ClaudeTask/claude-skills/README.md` 的技能列表。
 
 ### Wiki 文件
-写到 `E:/ClaudeTask/wiki_<YYYY-MM-DD>_<topic>.md`，结构自由，但要包含：背景、核心内容、经验教训三个部分。
+写到 `E:/ClaudeTask/toky_wiki/` 下对应子目录，文件名格式 `<YYYY-MM-DD>_<topic>.md`。
+
+根据内容类型选择子目录：
+
+| 子目录 | 放什么 |
+|--------|--------|
+| `notes/` | 学习笔记、今日总结、概念理解 |
+| `bugs/` | 踩坑记录、报错排查、fix 过程 |
+| `snippets/` | 可复用代码片段、配置模板、命令速查 |
+| `links/` | 文章收藏、参考资料整理 |
+
+结构自由，但要包含：**背景、核心内容、经验教训**三个部分。
 
 ---
 
 ## 第五步：推送 GitHub
 
+有 skill 时推送 claude-skills：
 ```bash
-export PATH="$PATH:/c/Program Files/GitHub CLI"
-cd /e/ClaudeTask/claude-skills
+cd "E:/ClaudeTask/claude-skills"
 git add .
-git commit -m "sync: <简短描述今日内容>"
+git commit -m "sync: <简短描述>"
 git push
 ```
 
-Wiki 文件默认不推送（存在本地即可），除非用户明确要求。
+有 wiki 时推送 toky_wiki：
+```bash
+cd "E:/ClaudeTask/toky_wiki"
+git add .
+git commit -m "sync: <简短描述>"
+git push
+```
+
+两者互相独立，有哪个推哪个，都有就各推一次。memory 不推送（本地私有）。
 
 ---
 
