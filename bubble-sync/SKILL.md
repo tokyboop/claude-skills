@@ -53,7 +53,7 @@ description: >
 **脱敏的目的**：内容要推送 GitHub，不能含有任何个人或敏感信息。保留结构和规律，去掉具体敏感值。
 
 替换规则：
-- 用户名/路径中的个人标识 → `<USER>`（如 `/Users/guohuijun/` → `/Users/<USER>/`）
+- 用户名/路径中的个人标识 → `<USER>`（如 `/Users/foo/` → `/Users/<USER>/`）
 - API Key / Token / 密码 → `<REDACTED>`
 - 真实 IP 地址 → `<IP>`
 - 公司内部项目代号、数据库名、表名（如非公开）→ `<PROJECT>` / `<DB>` / `<TABLE>`
