@@ -1,5 +1,11 @@
 # claude-skills
 
+> ⚠️ **Archived (2026-04-24)**：私人工作流已分叉到 `PrivateSet/claude/skills/`（含 context-backup / brainstorm / calibrate / fp / self-review / req-score / peek-siblings / eval-runner 等 8 个现役 skill，junction 挂载 `~/.claude/skills/`）。
+>
+> 此公开仓不再维护外发 skill：
+> - `skill-vetter`（第三方代码安全审查）保留作独立参考
+> - `bubble-sync` 已被 PrivateSet 里的 `context-backup` 取代（功能重叠，context-backup 是现役主力）
+
 我的 Claude Code 自定义技能库。
 
 ## 安装方法
